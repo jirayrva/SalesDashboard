@@ -2,15 +2,14 @@
 
 namespace TinyMVC;
 
+use Throwable;
+
 require_once("PSR4AutoLoader.php");
 
 class Bootstrap {
 
   public static function run() {
     self::init();
-    require_once(FRAMEWORK_PATH . "Controller.php");
-    require_once(FRAMEWORK_PATH . "Request.php");
-    
     $loader = new PSR4AutoLoader(APP_PATH);
     $loader->register();
     $request = new Request($_SERVER, $_POST, $_GET, $_FILES);
@@ -18,21 +17,47 @@ class Bootstrap {
   }
   
   private static function init() {
+    // User configurable constants 
+    if (!defined("APP_SOURCE_FOLDER_NAME")) define("APP_SOURCE_FOLDER_NAME", "app");
+    if (!defined("APP_CONTROLLER_SUFFIX")) define("APP_CONTROLLER_SUFFIX", "Controller");
+    if (!defined("APP_DEFAULT_CONTROLLER")) define("APP_DEFAULT_CONTROLLER", "Home");
+    if (!defined("APP_DEFAULT_ACTION")) define("APP_DEFAULT_ACTION", "Index");
+    if (!defined("DEBUG")) define("DEBUG", true);
+    
+    // Framework constants
+    define("CLASS_SEPARATOR", "\\");
     define("ROOT", getcwd() . DIRECTORY_SEPARATOR);
     define("FRAMEWORK_PATH", ROOT . "TinyMVC" . DIRECTORY_SEPARATOR);
-    define("APP_PATH", ROOT . 'app' . DIRECTORY_SEPARATOR);
-    define("CONTROLLER_SUFFIX", "Controller");
-    define("CLASS_SEPARATOR", "\\");
-    define("DEFAULT_CONTROLLER", "Home");
-    define("DEFAULT_ACTION", "Index");
+    define("APP_PATH", ROOT . APP_SOURCE_FOLDER_NAME . DIRECTORY_SEPARATOR);
+
+    require_once(FRAMEWORK_PATH . "Controller.php");
+    require_once(FRAMEWORK_PATH . "Request.php");
+
+    // set_exception_handler();
   }
 
   private static function route($request) {
     $controllerClassName = $request->getControllerName();
     $actionName = $request->getActionName();
     $params = $request->getParams();
-    $controller = new $controllerClassName;
-    $controller->$actionName($params);
+    try {
+      $controller = new $controllerClassName;
+      $controller->$actionName($params);
+    } catch (Throwable $e) {
+      if (DEBUG) {
+        echo sprintf(
+          '<h3>%s</h3><h4>%s</h4><h5>%s:%s:%s</h5>',
+          $e->getCode(),
+          $e->getMessage(),
+          $request->getURI(),
+          $e->getFile(),
+          $e->getLine()
+        );
+      } else {
+        http_response_code(404);
+        echo sprintf("<h1>Page not found</h1><div>Page <i>'%s'</li> is not found.</div>", $request->getURI());
+      }
+    }
   }
 
 }
