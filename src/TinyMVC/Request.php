@@ -2,7 +2,7 @@
 
 namespace TinyMVC;
 
-class Request{
+class Request {
 
     private $server;
     private $post;

@@ -30,19 +30,20 @@ class Bootstrap {
     define("FRAMEWORK_PATH", ROOT . "TinyMVC" . DIRECTORY_SEPARATOR);
     define("APP_PATH", ROOT . APP_SOURCE_FOLDER_NAME . DIRECTORY_SEPARATOR);
 
-    require_once(FRAMEWORK_PATH . "Controller.php");
     require_once(FRAMEWORK_PATH . "Request.php");
+    require_once(FRAMEWORK_PATH . "Response.php");
+    require_once(FRAMEWORK_PATH . "Controller.php");
+    require_once(FRAMEWORK_PATH . "Model.php");
+    require_once(FRAMEWORK_PATH . "View.php");
 
     // set_exception_handler();
   }
 
   private static function route($request) {
     $controllerClassName = $request->getControllerName();
-    $actionName = $request->getActionName();
-    $params = $request->getParams();
     try {
       $controller = new $controllerClassName($request);
-      $controller->executeAction($actionName, $params);
+      $controller->executeAction();
     } catch (Throwable $e) {
       if (DEBUG) {
         echo sprintf(

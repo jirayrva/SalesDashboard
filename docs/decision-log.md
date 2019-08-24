@@ -44,8 +44,12 @@ I'm not sure if I can use Composer. To be on the safe side, I'll write a PSR-4 l
   1. Each controller will be in a folder and a specific file will host the actions `Home -> Controller/Home/Home.php`.
 - The second approach allows for having utility/helper files along side the controller but it produces more files which is not needed for the scope of this project.
 - For the record, I believe it is better to have componont based file-heirarchy (link to Brown's page) where each of the MVC file for a component reside next to each other. This becomes even more evident when using PSR04, not only the folder is not the same but also the namespaces. This is way beyond the scope of this challenge.
+- Models are not bound statically, each controller use whatever models
+- Each action has it's own, all views of a controller reside in one folder named the same as the controller
 
 ### We won't do I18n, we use English only
+
+### Stateless vs Stateful?????
 
 ### Error and exception handling
 

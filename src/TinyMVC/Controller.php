@@ -3,18 +3,19 @@
 namespace TinyMVC;
 
 use Throwable;
+use TinyMVC\Response;
 
 abstract class Controller {
 
-  protected $request;
   protected $name;
-  protected $view;
-  protected $model;
+  protected $request;
+  protected $response;
 
-  abstract protected function Index();
+  abstract protected function Index($params, $res);
 
   public function __construct($request) {
     $this->request = $request;
+    $this->response = new Response();
     $this->init();
 }
 
@@ -23,29 +24,41 @@ abstract class Controller {
     if ($this->name != $this->request->getControllerShortName()) {
       throw "Controller name does not match the one in Request";
     }
-    $viewName = "View" . CLASS_SEPARATOR . $this->name . "View";
-    $modelName = "Model" . CLASS_SEPARATOR . $this->name . "Model";
-    $this->view = new $viewName();
-    $this->model = new $modelName();
-  }
-  
-  protected function processView($view) {
-    // print $view->output();
-    print $view;
   }
 
-  public function executeAction($actionName, $params) {
+  public function executeAction() {
+    $actionName = $this->request->getActionName();
+    $params = $this->request->getParams();
     if (!method_exists($this, $actionName)) {
       http_response_code(404);
-      echo sprintf("<h1>Page not found</h1><div>Page <i>'%s'</li> is not found.</div>", $this->$request->getURI());
+      echo sprintf("<h1>Page not found</h1><div>Page <i>'%s'</li> is not found.</div>", $this->request->getURI());
     } else {
       try {
-        $this->$actionName($params);
+        $this->preAction();
+        $this->$actionName($params, $this->response);
+        $this->postAction($actionName);
       } catch (Throwable $e) {
         http_response_code(500);
-        echo sprintf("<h1>Internal application error</h1><div>Error while running page <i>'%s'</li>.</div>", $request->getURI());
+        echo sprintf("<h1>Internal application error</h1><div>Error while running page <i>'%s'</li>.</div>", $this->request->getURI());
       }
     }
+  }
+
+  protected function postAction($actionName) {
+    $viewName = "View" . CLASS_SEPARATOR . $this->name . CLASS_SEPARATOR .  $actionName;
+    $this->view = new $viewName($this, $actionName);
+    $this->response->send($this->view->renderOutput());
+  }
+
+  protected function preAction() {
+  }
+
+  protected function redirect() {
+    // TODO:
+  }
+
+  public function getShortName() {
+    return $this->name;
   }
 }
 

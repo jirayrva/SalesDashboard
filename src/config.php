@@ -1,6 +1,6 @@
 <?php
 
-define("DEBUG", false);
+// define("DEBUG", false);
 
 /**
  * User configurable constants, optional
