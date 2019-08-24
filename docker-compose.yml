@@ -1,0 +1,35 @@
+version: "2.1"
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql-server-80
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    #        working_dir: /application
+    # volumes:
+    #   - .:/dbfiles
+    environment:
+      - MYSQL_ROOT_PASSWORD=rpwd
+      - MYSQL_DATABASE=sales_db
+      - MYSQL_USER=db_user
+      - MYSQL_PASSWORD=myspwd
+    ports:
+      - "8082:3306"
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
+  app:
+    container_name: php-apache
+    image: jva/php-apache
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    ports:
+      - 8080:80
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - db
