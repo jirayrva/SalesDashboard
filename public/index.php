@@ -1,2 +1,0 @@
-First page
-<?php phpinfo() ?>
