@@ -35,6 +35,10 @@ class Request{
     $this->params = array_slice($parts, 3); 
   }
 
+  public function getControllerShortName() {
+    return $this->controllerName;
+  }
+
   public function getControllerName() {
     return APP_CONTROLLER_SUFFIX . CLASS_SEPARATOR . $this->controllerName;
   }

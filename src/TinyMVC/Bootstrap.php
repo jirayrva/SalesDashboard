@@ -41,8 +41,8 @@ class Bootstrap {
     $actionName = $request->getActionName();
     $params = $request->getParams();
     try {
-      $controller = new $controllerClassName;
-      $controller->executeAction($actionName, $params, $request);
+      $controller = new $controllerClassName($request);
+      $controller->executeAction($actionName, $params);
     } catch (Throwable $e) {
       if (DEBUG) {
         echo sprintf(
