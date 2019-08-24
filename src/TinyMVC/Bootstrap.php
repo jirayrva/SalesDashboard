@@ -32,7 +32,7 @@ class Bootstrap {
     $actionName = $request->getActionName();
     $params = $request->getParams();
     $controller = new $controllerClassName;
-    print $controller->$actionName($params);
+    $controller->$actionName($params);
   }
 
 }

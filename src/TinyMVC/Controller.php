@@ -2,10 +2,13 @@
 
 namespace TinyMVC;
 
-class Controller{
-    public function Index() {
-        return "";
-    }
+abstract class Controller {
+  abstract protected function Index();
+  
+  protected function processView($view) {
+    // print $view->output();
+    print $view;
+  }
 }
 
 ?>
