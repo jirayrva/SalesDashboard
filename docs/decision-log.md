@@ -30,9 +30,20 @@ Docker is mainly used in operations. However, it can be easily used in developme
 
 ### We'll manage commands in GNU Make, even on Windows
 
-### Compose??
+### Composer??
+
+I'm not sure if I can use Composer. To be on the safe side, I'll write a PSR-4 loader
 
 ### We will build a mini MVC framework
+
+- We will use clean URLs
+- For the sake of simplicity we will have a static URL format with flat heirarchy.
+  i.e: `/controller/action/[params[/....]`
+- There are two alternatives
+  1. Each controller will be in a file and actions are functions. `Home -> Controller/Home.php`
+  1. Each controller will be in a folder and a specific file will host the actions `Home -> Controller/Home/Home.php`.
+- The second approach allows for having utility/helper files along side the controller but it produces more files which is not needed for the scope of this project.
+- For the record, I believe it is better to have componont based file-heirarchy (link to Brown's page) where each of the MVC file for a component reside next to each other. This is way beyond the scope of this challenge.
 
 ### Technicalities
 

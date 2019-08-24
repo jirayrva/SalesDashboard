@@ -1,7 +1,7 @@
 <?php
 
-require "framework/Framework.class.php";
+require "TinyMVC/Bootstrap.php";
 
-\TinyMVC\Framework::run();
+\TinyMVC\Bootstrap::run();
 
 ?>
