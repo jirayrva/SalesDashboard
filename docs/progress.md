@@ -24,4 +24,8 @@
     - Error in stating, removing the `default` machine solved it
 - mounting volumes in docker
   - [Solving share problem](http://support.divio.com/en/articles/646695-how-to-use-a-directory-outside-c-users-with-docker-toolbox-docker-for-windows)
--
+- [Terminal color error](https://stackoverflow.com/questions/6804208/nano-error-error-opening-terminal-xterm-256color)
+- Switched to Linux. Hell broke loose for Docker.
+- [Installing mysql extnesions](https://stackoverflow.com/questions/44603941/how-to-enable-pdo-mysql-in-the-php-docker-image)
+- [Helpful for docker](https://www.shiphp.com/blog/2017/php-mysql-docker)
+- https://bitpress.io/simple-approach-using-docker-with-php/

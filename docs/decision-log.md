@@ -47,7 +47,19 @@ I'm not sure if I can use Composer. To be on the safe side, I'll write a PSR-4 l
 
 ### We won't do I18n, we use English only
 
-### Technicalities
+### Error and exception handling
+
+Check for potetial error situations and use `die` to stop execution and report reason.
+Should we raise and exception instead of using `die` ??
+TODO: Handle errors better: gracefully
+
+### Testing???
+
+### Logging
+
+### Code formatting (VS Code ext.)??????
+
+## Technicalities
 
 - Indentation: two-spaces
 
