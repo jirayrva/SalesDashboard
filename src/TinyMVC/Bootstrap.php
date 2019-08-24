@@ -42,7 +42,7 @@ class Bootstrap {
     $params = $request->getParams();
     try {
       $controller = new $controllerClassName;
-      $controller->$actionName($params);
+      $controller->executeAction($actionName, $params, $request);
     } catch (Throwable $e) {
       if (DEBUG) {
         echo sprintf(
