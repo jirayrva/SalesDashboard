@@ -11,12 +11,12 @@ class Model {
     $this->db = new DB();
   }
 
-  protected function queryFromBase($select = "*", $group = "") {
-    if (!isset($this->baseQuerySQL)) die("base sql not set");
-    $sql = sprintf($this->baseQuerySQL, $select, $group);
-    // var_dump($sql);
-    return $this->db->query($sql);
-  }
+  // protected function queryFromBase($select = "*", $where = "", $group = "") {
+  //   if (!isset($this->baseQuerySQL)) die("base sql not set");
+  //   $sql = sprintf($this->baseQuerySQL, $select, $where, $group);
+  //   var_dump($sql);
+  //   return $this->db->query($sql);
+  // }
 
 }
 
