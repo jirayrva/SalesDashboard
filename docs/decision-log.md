@@ -12,7 +12,8 @@ The original idea is to have a full-fledged [Architectural Decision Record][ard-
 - We will use MVC
 - We will NOT use a PHP framework
 - We will use Bootstrap for layout
-- UI???
+- We will comply with PSR-4 autoloading
+- We will use namespaces
 
 ## Decisions
 

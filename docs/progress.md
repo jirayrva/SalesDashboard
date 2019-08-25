@@ -35,6 +35,6 @@
 - https://stackoverflow.com/questions/27238411/display-curl-output-in-readable-json-format-in-unix-shell-script
 - https://coderwall.com/p/fasnya/add-git-branch-name-to-bash-prompt
 - https://gist.github.com/jcavat/2ed51c6371b9b488d6a940ba1049189b
-- > > > DB abstraction isn't good, later when refactoring
-- > > > Hanev't done much Dependency injection, later when refactoring
+- > DB abstraction isn't good, later when refactoring
+- > Hanev't done much Dependency injection, later when refactoring
 - I added currency to db function but didn't use it

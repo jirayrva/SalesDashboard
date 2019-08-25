@@ -70,3 +70,12 @@ rebuild:
 	docker-compose down 
 	make build
 	docker-compose up -d
+
+.PHONY: up
+up:
+	docker build --file .docker/Dockerfile -t $(IMG_NAME) .
+	docker-compose up -d
+
+.PHONY: down
+down:
+	docker-compose down
