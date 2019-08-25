@@ -57,6 +57,10 @@ Even though creating optimized SQL statements help efficiency, but I don't prefe
 
 ### We will use composition. The model won't extend DB
 
+### No templating system, nor Header, Footer system
+
+### no bundling, linting, minification
+
 ### Logging
 
 ### Code formatting (VS Code ext.)??????

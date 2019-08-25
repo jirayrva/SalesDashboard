@@ -13,6 +13,7 @@
 // define("APP_CONTROLLER_SUFFIX", "Controller");
 // define("APP_DEFAULT_CONTROLLER", "Home");
 // define("APP_DEFAULT_ACTION", "Index");
+// define("APP_DASHBOARD_DEFAULT_DURATION", "Index");
 
 /**
  * DB constants, mandatory
