@@ -14,9 +14,8 @@ class Dashboard extends \TinyMVC\Controller{
   }
   
   public function RangeData($params, $res) {
-    $from = isset($params[0]) ? $params[0] : 0;//getFrom();
-    // $to = isset($params[1]) ? $params[1] : null;
-    $to = isset($params[1]) ? $params[1] : 0;
+    $from = isset($params[0]) && $params[0] != "" ? $params[0] : date('Y-m-d', strtotime('-30 days'));
+    $to = isset($params[1]) && $params[1] != "" ? $params[1] : date("Y-m-d");
     
     $sales = new \Model\SalesRangeModel($from, $to);
     $data =  array(

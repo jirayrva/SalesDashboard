@@ -9,12 +9,13 @@ class SalesRangeModel extends \TinyMVC\Model {
 
   public function __construct($from, $to) {
     parent::__construct();
-    $this->from = $from !== 0 ? $from : date('Y-m-d', strtotime('-1 days'));;
-    $this->to = $to !== 0 ? $from : date("Y-m-d");
+    $this->from = $from;
+    $this->to = $to;
     $this->baseQuerySQL = "SELECT %s
                            FROM (SELECT cid, `order`.oid, purchase_date, quantity, price,  quantity * price AS value
                                  FROM `order`, `order_item`
-                                 WHERE `order`.oid = `order_item`.oid) AS base
+                                 WHERE `order`.oid = `order_item`.oid
+                                ) AS base
                            WHERE purchase_date BETWEEN '%s' AND '%s'
                            %s";
   }
