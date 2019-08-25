@@ -13,6 +13,7 @@ class PSR4AutoLoader {
   public function register() {
     spl_autoload_register(function($classname) {
       $classFilename = APP_PATH . str_replace(CLASS_SEPARATOR, DIRECTORY_SEPARATOR, $classname) . '.php';
+      // print $classFilename;
       if (file_exists($classFilename)) {
         require_once $classFilename;
       }

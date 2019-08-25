@@ -29,3 +29,4 @@
 - [Installing mysql extnesions](https://stackoverflow.com/questions/44603941/how-to-enable-pdo-mysql-in-the-php-docker-image)
 - [Helpful for docker](https://www.shiphp.com/blog/2017/php-mysql-docker)
 - https://bitpress.io/simple-approach-using-docker-with-php/
+- The chart: is last month a calendar month or last 30 days. The google drive image shows last 30 days, hence I'll do the same. If time permits, I'll make the default configurable. (I shouldn't overdo it, maybe not then)
