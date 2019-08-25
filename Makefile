@@ -1,5 +1,6 @@
 PORT?=8080
 IMG_NAME?= jva/php-apache
+CONTAINER_NAME?= php-apache
 
 .PHONY: start
 start:
@@ -54,3 +55,18 @@ login:
 .PHONY: status
 status:
 	docker ps -f name=apache
+
+.PHONY: db-backup
+db-backup:
+	# docker exec $(CONTAINER_NAME) /usr/bin/mysqldump -u root --password=rpwd mycompany > .docker/db.sql
+	docker exec 4d35a5383fb2 /usr/bin/mysqldump -u root --password=rpwd mycompany > .docker/db.sql
+
+.PHONY: dbr
+dbr:
+	cat .docker/db.sql | docker exec -i 4d35a5383fb2 /usr/bin/mysql -u root --password=rpwd mycompany
+
+.PHONY: rebuild
+rebuild:
+	docker-compose down 
+	make build
+	docker-compose up -d

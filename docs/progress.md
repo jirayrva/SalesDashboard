@@ -30,3 +30,11 @@
 - [Helpful for docker](https://www.shiphp.com/blog/2017/php-mysql-docker)
 - https://bitpress.io/simple-approach-using-docker-with-php/
 - The chart: is last month a calendar month or last 30 days. The google drive image shows last 30 days, hence I'll do the same. If time permits, I'll make the default configurable. (I shouldn't overdo it, maybe not then)
+- https://gist.github.com/spalladino/6d981f7b33f6e0afe6bb
+- https://stackoverflow.com/questions/6739871/how-to-create-an-array-for-json-using-php
+- https://stackoverflow.com/questions/27238411/display-curl-output-in-readable-json-format-in-unix-shell-script
+- https://coderwall.com/p/fasnya/add-git-branch-name-to-bash-prompt
+- https://gist.github.com/jcavat/2ed51c6371b9b488d6a940ba1049189b
+- > > > DB abstraction isn't good, later when refactoring
+- > > > Hanev't done much Dependency injection, later when refactoring
+- I added currency to db function but didn't use it

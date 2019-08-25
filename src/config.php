@@ -21,9 +21,9 @@
  * DB_USER
  * DB_PASS
  */
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'sales');
-define('DB_USER', 'root');
-define('DB_PASS', 'pwd');
+define('DB_HOST', 'db');
+define('DB_NAME', 'mycompany');
+define('DB_USER', 'db_user');
+define('DB_PASS', 'mpwd');
 
 ?>

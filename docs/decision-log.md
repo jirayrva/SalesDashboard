@@ -51,13 +51,11 @@ I'm not sure if I can use Composer. To be on the safe side, I'll write a PSR-4 l
 
 ### Stateless vs Stateful?????
 
-### Error and exception handling
+### We'll fetch data from DB and process them in the model
 
-Check for potetial error situations and use `die` to stop execution and report reason.
-Should we raise and exception instead of using `die` ??
-TODO: Handle errors better: gracefully
+Even though creating optimized SQL statements help efficiency, but I don't prefer to hide the code in the DB. If performance becomes an issue, then we might consider that. Till then, fetch the tables and process in the model. For the sake of demonstration I'll create a function that does the processing in SQL.
 
-### Testing???
+### We will use composition. The model won't extend DB
 
 ### Logging
 

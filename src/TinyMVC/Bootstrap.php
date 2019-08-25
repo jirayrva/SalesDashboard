@@ -33,6 +33,7 @@ class Bootstrap {
     require_once(FRAMEWORK_PATH . "Request.php");
     require_once(FRAMEWORK_PATH . "Response.php");
     require_once(FRAMEWORK_PATH . "Controller.php");
+    require_once(FRAMEWORK_PATH . "DB.php");
     require_once(FRAMEWORK_PATH . "Model.php");
     require_once(FRAMEWORK_PATH . "View.php");
 
