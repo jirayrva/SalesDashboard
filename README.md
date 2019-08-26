@@ -23,4 +23,10 @@ make up
 make down
 ```
 
-P.S: All scripts are tested on Linux. Inn theory, they should run on other platforms but they are not tested.
+The only valid routes are
+
+- `/Dashbaord/RangeData/yyyy-mm-dd/yyyy-mm-dd`: sales data `from/to`
+- `/Dashbaord/RangeData/yyyy-mm-dd` : no `to` date, defaulting to today
+- `/Dashbaord/RangeData` : no `from/to` dates, defaulting for the last x days (x is configurable but defaulting to 30 days)
+
+P.S: All scripts are tested on Linux. In theory, they should run on other platforms but they are not tested.
