@@ -11,7 +11,6 @@ class Bootstrap {
   public static function run() {
     self::init();
     $loader = new PSR4AutoLoader(APP_PATH);
-    $loader->register();
     $request = new Request($_SERVER, $_POST, $_GET, $_FILES);
     $response = new Response();
     self::route($request, $response);

@@ -10,9 +10,10 @@ class PSR4AutoLoader {
   public function __construct($appDir, $frameworkDir = "TinyMVC") {
     $this->appDir = $appDir;
     $this->frameworkDir = $frameworkDir;
+    $this->register();
   }
 
-  public function register() {
+  private function register() {
     spl_autoload_register(function($classname) {
       if ($this->isFrameworkClass($classname)) {
         $this->loadFrameworkClass($classname);
