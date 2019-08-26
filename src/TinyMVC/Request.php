@@ -54,6 +54,14 @@ class Request {
   public function getURI() {
     return $this->uri;
   }
+
+  public function getParameterCount() {
+
+  }
+
+  public function getParameterByName() {
+
+  }
 }
 
 ?>

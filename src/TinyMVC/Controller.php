@@ -26,34 +26,18 @@ abstract class Controller {
     }
   }
 
+  public function isActionExecutable() {
+    $actionName = $this->request->getActionName();
+    if (!method_exists($this, $actionName)) throw new Exception();
+    return true;
+  }
+
   public function executeAction() {
     $actionName = $this->request->getActionName();
     $params = $this->request->getParams();
-    if (!method_exists($this, $actionName)) {
-      echo "no";
-      http_response_code(404);
-      echo sprintf("<h1>Page not found</h1><div>Page <i>'%s'</li> is not found.</div>", $this->request->getURI());
-    } else {
-      try {
-        $this->preAction();
-        $this->$actionName($params, $this->response);
-        if (!$this->response->isSent()) $this->postAction($actionName);
-      } catch (Throwable $e) {
-        if (DEBUG) {
-          echo sprintf(
-            '<h3>%s</h3><h4>%s</h4><h5>%s:%s:%s</h5>',
-            $e->getCode(),
-            $e->getMessage(),
-            $this->request->getURI(),
-            $e->getFile(),
-            $e->getLine()
-          );
-        } else {
-          http_response_code(500);
-          echo sprintf("<h1>Internal application error</h1><div>Error while running page <i>'%s'</li>.</div>", $this->request->getURI());
-        }
-      }
-    }
+    $this->preAction();
+    $this->$actionName($params, $this->response);
+    if (!$this->response->isSent()) $this->postAction($actionName);
   }
   
   protected function postAction($actionName) {

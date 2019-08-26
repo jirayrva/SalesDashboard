@@ -13,7 +13,8 @@ class Bootstrap {
     $loader = new PSR4AutoLoader(APP_PATH);
     $loader->register();
     $request = new Request($_SERVER, $_POST, $_GET, $_FILES);
-    self::route($request);
+    $response = new Response();
+    self::route($request, $response);
   }
   
   private static function init() {
@@ -30,6 +31,7 @@ class Bootstrap {
     define("FRAMEWORK_PATH", ROOT . "TinyMVC" . DIRECTORY_SEPARATOR);
     define("APP_PATH", ROOT . APP_SOURCE_FOLDER_NAME . DIRECTORY_SEPARATOR);
 
+    // Require framework specific files
     require_once(FRAMEWORK_PATH . "Request.php");
     require_once(FRAMEWORK_PATH . "Response.php");
     require_once(FRAMEWORK_PATH . "Controller.php");
@@ -40,25 +42,18 @@ class Bootstrap {
     // set_exception_handler();
   }
 
-  private static function route($request) {
+  private static function route($request, $response) {
     $controllerClassName = $request->getControllerName();
     try {
       $controller = new $controllerClassName($request);
+      $controller->isActionExecutable();
+    } catch (Throwable $e) {
+      $response->send404($request, $e);
+    }
+    try {
       $controller->executeAction();
     } catch (Throwable $e) {
-      if (DEBUG) {
-        echo sprintf(
-          '<h3>%s</h3><h4>%s</h4><h5>%s:%s:%s</h5>',
-          $e->getCode(),
-          $e->getMessage(),
-          $request->getURI(),
-          $e->getFile(),
-          $e->getLine()
-        );
-      } else {
-        http_response_code(404);
-        echo sprintf("<h1>Page not found</h1><div>Page <i>'%s'</li> is not found.</div>", $request->getURI());
-      }
+      $response->send500($request, $e);
     }
   }
 

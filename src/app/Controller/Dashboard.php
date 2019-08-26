@@ -6,7 +6,6 @@ class Dashboard extends \TinyMVC\Controller{
 
   public function Index($params, $res) {
     
-    
     // $m = new HomeModel();
     // $this->processView("<h1>Hello to TinyMVC</h1><h2>Home</h2>");
     // $res->send("JVA");
