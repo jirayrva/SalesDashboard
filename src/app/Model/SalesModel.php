@@ -2,7 +2,7 @@
 
 namespace Model;
 
-class SalesModel extends \TinyMVC\Model {
+class SalesModel extends \TinyMVC\Core\Model {
 
   public function getNoOfOrders($from, $to) {
     return 100;

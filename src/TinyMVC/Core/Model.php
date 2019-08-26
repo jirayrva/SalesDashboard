@@ -1,6 +1,6 @@
 <?php
 
-namespace TinyMVC;
+namespace TinyMVC\Core;
 
 class Model {
 

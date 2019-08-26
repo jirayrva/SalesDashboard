@@ -6,6 +6,9 @@ use Throwable;
 
 require_once("PSR4AutoLoader.php");
 
+use \TinyMVC\Core\Request;
+use \TinyMVC\Core\Response;
+
 class Bootstrap {
 
   public static function run() {

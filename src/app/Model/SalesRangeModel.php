@@ -2,7 +2,7 @@
 
 namespace Model;
 
-class SalesRangeModel extends \TinyMVC\Model {
+class SalesRangeModel extends \TinyMVC\Core\Model {
 
   protected $from;
   protected $to;

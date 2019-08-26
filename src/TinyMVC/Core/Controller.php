@@ -1,9 +1,9 @@
 <?php
 
-namespace TinyMVC;
+namespace TinyMVC\Core;
 
 use Throwable;
-use TinyMVC\Response;
+use TinyMVC\Core\Response;
 
 abstract class Controller {
 

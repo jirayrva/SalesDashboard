@@ -4,7 +4,7 @@ namespace Controller;
 
 use Model\HomeModel;
 
-class Home extends \TinyMVC\Controller{
+class Home extends \TinyMVC\Core\Controller{
 
   public function Index($params, $res) {
       $m = new HomeModel();

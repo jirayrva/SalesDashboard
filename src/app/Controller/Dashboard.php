@@ -2,7 +2,7 @@
 
 namespace Controller;
 
-class Dashboard extends \TinyMVC\Controller{
+class Dashboard extends \TinyMVC\Core\Controller{
 
   public function Index($params, $res) {
     
