@@ -41,13 +41,13 @@ class Bootstrap {
     try {
       $controller = new $controllerClassName($request);
       $controller->isActionExecutable();
+      try {
+        $controller->executeAction();
+      } catch (Throwable $e) {
+        $response->send500($request, $e);
+      }
     } catch (Throwable $e) {
       $response->send404($request, $e);
-    }
-    try {
-      $controller->executeAction();
-    } catch (Throwable $e) {
-      $response->send500($request, $e);
     }
   }
 
