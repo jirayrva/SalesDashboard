@@ -75,6 +75,20 @@ class SalesRangeModel extends \TinyMVC\Model {
     return $result;
   }
 
+  public function getRangeData() {
+    $data = array(
+      'datestamp' => date("Y-m-d H:i:s "),
+      'rangeStartDate' => $this->from,
+      'rangeEndDate' => $this->to,
+      'noOfOrders' => $this->getNoOfOrders(),//$from, $to),
+      'totalRevenue' => $this->getTotalRevenue(),//$from, $to),
+      'noOfCustomer' => $this->getNoOfCustomer(),//$from, $to),
+      'customersPerDay' => $this->getCustomersPerDay(),//$from, $to),
+      'ordersPerDay' => $this->getOrdersPerDay()//$from, $to)
+    );
+    return $data;
+  }
+
 }
 
 ?>
