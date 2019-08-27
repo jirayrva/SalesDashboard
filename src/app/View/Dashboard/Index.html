@@ -17,16 +17,26 @@
       <div class="row">
         <div class="col-md-auto">
           <section>
-            <h2 id="datestamp">{{}}:</h2>
+            <h2>Summary</h2>
             Data for the period:
-            <div>
-              <span id="rangeStartDate"></span> -
-              <span id="rangeEndDate"></span>
-            </div>
+            <div>Start :<span id="rangeStartDate"></span></div>
+            <div>End :<span id="rangeEndDate"></span></div>
             <div><span id="totalRevenue"></span> SEK</div>
-            <div><span id="noOfOrders"></span> orders</div>
-            <div><span id="noOfCustomers"></span> customers</div>
+            <div>Orders <span id="noOfOrders"></span></div>
+            <div>Customers <span id="noOfCustomers"></span></div>
+            <div class="small">
+              Report generate at
+              <div id="datestamp"></div>
+            </div>
           </section>
+          <div id="newDates">
+            <h3>New dates</h3>
+            <form>
+              <div>From: <input type="date" id="from" required /></div>
+              <div>To: <input type="date" id="to" /></div>
+              <input type="button" value="Update" onclick="update()" />
+            </form>
+          </div>
         </div>
         <div class="col-md">
           <div style="width:75%;">
@@ -39,7 +49,7 @@
     <script src="/assets/js/Chart.min.js"></script>
     <script>
       window.onload = function() {
-        loadRangeData();
+        initRangeData();
       };
     </script>
   </body>

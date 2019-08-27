@@ -1,6 +1,12 @@
 .container {
-  max-width: 1200px;
+  max-width: 90%;
 }
 header {
   min-height: 6rem;
+}
+#newDates {
+  margin-top: 5rem;
+}
+.small {
+  margin-top: 1rem;
 }

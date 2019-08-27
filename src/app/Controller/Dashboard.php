@@ -18,6 +18,11 @@ class Dashboard extends \TinyMVC\Core\Controller{
     // TODO: all the param handling functionality should be moved to request
     $from = isset($params[0]) && $params[0] != "" ? $params[0] : date('Y-m-d', strtotime($defaultDuration));
     $to = isset($params[1]) && $params[1] != "" ? $params[1] : date("Y-m-d");
+
+//     print "from: " . $from . ", to: ". $to;
+//     // print "[1]: " . $params[0] . ", 2: ". $params[1];
+// var_dump($params);
+
     
     $sales = new \Model\SalesRangeModel($from, $to);
     $data =  $sales->getRangeData();

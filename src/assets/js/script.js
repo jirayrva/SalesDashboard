@@ -1,4 +1,4 @@
-const fetchRangeData = async url => {
+const fetchAndUpdateRangeData = async url => {
   fetch(url)
     .then(function(response) {
       return response.json();
@@ -29,16 +29,10 @@ const fillSummaryData = data => {
 const fillChartData = data => {
   const red = "rgb(255, 99, 132)";
   const blue = "rgb(54, 162, 235)";
-
-  // let minYCustomerValue = Math.min(mostNegativeValue, options.ticks.suggestedMin);
-  // let maxYCustomerValue = Math.max(mostPositiveValue, options.ticks.suggestedMax);
-  // let minYOrderValue = Math.min(mostNegativeValue, options.ticks.suggestedMin);
-  // let maxYOrderValue = Math.max(mostPositiveValue, options.ticks.suggestedMax);
-
-  let minYCustomerValue = 200;
-  let maxYCustomerValue = 400;
-  let minYOrderValue = 100;
-  let maxYOrderValue = 300;
+  let minYCustomerValue = Math.min(...Object.values(data.customersPerDay), 0);
+  let maxYCustomerValue = Math.max(...Object.values(data.customersPerDay));
+  let minYOrderValue = Math.min(...Object.values(data.ordersPerDay));
+  let maxYOrderValue = Math.max(...Object.values(data.ordersPerDay));
 
   var config = {
     type: "line",
@@ -97,8 +91,8 @@ const fillChartData = data => {
               labelString: "Orders"
             },
             ticks: {
-              suggestedMin: minYCustomerValue,
-              suggestedMax: maxYCustomerValue
+              suggestedMin: minYOrderValue,
+              suggestedMax: maxYOrderValue
             }
           },
           {
@@ -110,8 +104,8 @@ const fillChartData = data => {
               labelString: "Customers"
             },
             ticks: {
-              suggestedMin: minYOrderValue,
-              suggestedMax: maxYOrderValue
+              suggestedMin: minYCustomerValue,
+              suggestedMax: maxYCustomerValue
             }
           }
         ]
@@ -122,9 +116,30 @@ const fillChartData = data => {
   window.myLine = new Chart(ctx, config);
 };
 
-async function loadRangeData() {
-  let data = fetchRangeData(config.rangeDataURL);
+async function initRangeData() {
+  let path = location.pathname.split("/");
+  path.shift();
+  path.shift();
+  path.shift();
+  let url = config.rangeDataURL;
+  if (path[0]) url += "/" + path[0];
+  if (path[1]) url += "/" + path[1];
+  fetchAndUpdateRangeData(url);
 }
+
+const update = () => {
+  //
+  console.log("updating");
+  let url = config.rangeDataURL;
+  let from = document.getElementById("from").value;
+  if (!from) return;
+  url += `/${from}`;
+  let to = document.getElementById("to").value;
+  if (to) url += `/${to}`;
+  fetchAndUpdateRangeData(url);
+};
+
+location.pathname;
 const config = {
   rangeDataURL: "http://localhost:8080/Dashboard/RangeData"
 };

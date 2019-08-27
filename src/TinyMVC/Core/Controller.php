@@ -31,6 +31,7 @@ abstract class Controller {
 
   public function executeAction() {
     $params = $this->request->getParams();
+// var_dump($params);
     $actionName = $this->actionName;
     $this->preAction();
     $this->$actionName($params, $this->response);
