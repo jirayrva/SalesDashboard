@@ -43,7 +43,7 @@ class SalesRangeModel extends \TinyMVC\Core\Model {
     }
   }
 
-  public function getNoOfCustomer() {
+  public function getNoOfCustomers() {
     $stmt = $this->queryFromBase("count(distinct cid) AS noOfCustomers");
     if (!$stmt || $stmt->rowCount() > 1)  die("error3");
     while ($row = $stmt->fetch()) {
@@ -80,11 +80,11 @@ class SalesRangeModel extends \TinyMVC\Core\Model {
       'datestamp' => date("Y-m-d H:i:s "),
       'rangeStartDate' => $this->from,
       'rangeEndDate' => $this->to,
-      'noOfOrders' => $this->getNoOfOrders(),//$from, $to),
-      'totalRevenue' => $this->getTotalRevenue(),//$from, $to),
-      'noOfCustomer' => $this->getNoOfCustomer(),//$from, $to),
-      'customersPerDay' => $this->getCustomersPerDay(),//$from, $to),
-      'ordersPerDay' => $this->getOrdersPerDay()//$from, $to)
+      'noOfOrders' => $this->getNoOfOrders(),
+      'totalRevenue' => round($this->getTotalRevenue(),2),
+      'noOfCustomers' => $this->getNoOfCustomers(),
+      'customersPerDay' => $this->getCustomersPerDay(),
+      'ordersPerDay' => $this->getOrdersPerDay()
     );
     return $data;
   }

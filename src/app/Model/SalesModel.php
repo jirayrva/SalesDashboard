@@ -12,7 +12,7 @@ class SalesModel extends \TinyMVC\Core\Model {
     return 50;
   }
 
-  public function getNoOfCustomer($from, $to) {
+  public function getNoOfCustomers($from, $to) {
     return 5;
   }
 

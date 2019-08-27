@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="/assets/css/bootstrap.css" />
+    <link rel="stylesheet" href="/assets/css/Chart.min.css" />
     <link rel="stylesheet" href="/assets/css/style.css" />
     <title>Sales Dashboard</title>
   </head>
@@ -16,18 +17,30 @@
       <div class="row">
         <div class="col-md-auto">
           <section>
-            <h2>Summary:</h2>
+            <h2 id="datestamp">{{}}:</h2>
             Data for the period:
-            <div><span id="startDate"></span> - <span id="endDate"></span></div>
-            <div><span id="revenue"></span>SEK</div>
+            <div>
+              <span id="rangeStartDate"></span> -
+              <span id="rangeEndDate"></span>
+            </div>
+            <div><span id="totalRevenue"></span> SEK</div>
             <div><span id="noOfOrders"></span> orders</div>
             <div><span id="noOfCustomers"></span> customers</div>
           </section>
         </div>
         <div class="col-md">
-          <section>Work in progress</section>
+          <div style="width:75%;">
+            <canvas id="canvas"></canvas>
+          </div>
         </div>
       </div>
     </div>
+    <script src="/assets/js/script.js"></script>
+    <script src="/assets/js/Chart.min.js"></script>
+    <script>
+      window.onload = function() {
+        loadRangeData();
+      };
+    </script>
   </body>
 </html>
