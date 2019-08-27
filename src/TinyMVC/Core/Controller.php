@@ -38,7 +38,7 @@ abstract class Controller {
   }
   
   protected function postAction() {
-    $viewName = "View" . CLASS_SEPARATOR . $this->name . CLASS_SEPARATOR .  $this->actionName;
+    $viewName = VIEW_DIR . CLASS_SEPARATOR . $this->name . CLASS_SEPARATOR .  $this->actionName;
     $this->view = new $viewName($this, $this->actionName);
     $this->response->send($this->view->renderOutput());
   }

@@ -10,7 +10,9 @@
  * APP_DEFAULT_ACTION
  */
 // define("APP_SOURCE_FOLDER_NAME", "app");
-// define("APP_CONTROLLER_SUFFIX", "Controller");
+// define("APP_CONTROLLER_DIR", "Controller");
+// define("APP_VIEW_DIR", "View");
+// define("APP_MODEL_DIR", "Model");
 // define("APP_DEFAULT_CONTROLLER", "Home");
 // define("APP_DEFAULT_ACTION", "Index");
 // define("APP_DASHBOARD_DEFAULT_DURATION", "Index");

@@ -22,7 +22,9 @@ class Bootstrap {
   private static function init() {
     // User configurable constants 
     if (!defined("APP_SOURCE_FOLDER_NAME")) define("APP_SOURCE_FOLDER_NAME", "app");
-    if (!defined("APP_CONTROLLER_SUFFIX")) define("APP_CONTROLLER_SUFFIX", "Controller");
+    if (!defined("APP_CONTROLLER_DIR")) define("APP_CONTROLLER_SUFFIX", "Controller");
+    if (!defined("APP_VIEW_DIR")) define("APP_VIEW_DIR", "View");
+    if (!defined("APP_MODEL_DIR")) define("APP_MODEL_DIR", "Model");
     if (!defined("APP_DEFAULT_CONTROLLER")) define("APP_DEFAULT_CONTROLLER", "Home");
     if (!defined("APP_DEFAULT_ACTION")) define("APP_DEFAULT_ACTION", "Index");
     if (!defined("DEBUG")) define("DEBUG", true);
