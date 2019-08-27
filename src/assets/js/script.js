@@ -136,6 +136,8 @@ const update = () => {
   url += `/${from}`;
   let to = document.getElementById("to").value;
   if (to) url += `/${to}`;
+  document.getElementById("canvasParent").innerHTML =
+    '<canvas id="canvas"></canvas>';
   fetchAndUpdateRangeData(url);
 };
 
