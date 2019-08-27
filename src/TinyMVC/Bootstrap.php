@@ -48,7 +48,6 @@ class Bootstrap {
         try {
           $controller->executeAction();
         } catch (Throwable $e) {
-          // throw $e;
           if (DEBUG) throw $e;
           else $response->send500($request, $e);
         }

@@ -2,7 +2,7 @@
 
 namespace TinyMVC\Core;
 
-abstract class View implements iView {
+class View implements iView {
 
   protected $viewName;
   protected $htmlFile;
@@ -14,6 +14,9 @@ abstract class View implements iView {
   }
 
   protected function loadHTMLFile() {
+    if (!file_exists($this->viewFilePath)) {
+      throw new Exception("No html file");
+    }
     $this->htmlFile = file_get_contents($this->viewFilePath);
   }
 

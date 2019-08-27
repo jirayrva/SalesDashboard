@@ -40,8 +40,19 @@ abstract class Controller {
   
   protected function renderView() {
     $viewName = $this->getViewName();
-    $this->view = new $viewName($this, $this->actionName);
-    $this->response->send($this->view->renderOutput());
+    try {
+      $view = new $viewName($this, $this->actionName);
+    } catch (Throwable $e) {
+      // Custom view php file does not exist, use default view php
+      $view = new View($this, $this->actionName);
+    } finally {
+      try {
+        $output = $view->renderOutput();
+        $this->response->send($output);
+      } catch (Throwable $e) {
+        $this->response->send505($this->request, $e);
+      }
+    }
   }
 
   protected function getViewName() {
