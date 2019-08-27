@@ -48,13 +48,17 @@ class Bootstrap {
         try {
           $controller->executeAction();
         } catch (Throwable $e) {
-          $response->send500($request, $e);
+          // throw $e;
+          if (DEBUG) throw $e;
+          else $response->send500($request, $e);
         }
       } catch (Throwable $e) {
-        $response->send404($request, $e);
+        if (DEBUG) throw $e;
+        else $response->send404($request, $e);
       }
     } catch (Throwable $e) {
-      $response->send404($request, $e);
+      if (DEBUG) throw $e;
+      else $response->send404($request, $e);
     }
   }
 }
