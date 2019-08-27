@@ -33,8 +33,6 @@ class Request {
     $this->controllerName = isset($parts[1]) && $parts[1] != "" ? ucfirst($parts[1]) : "Home";
     $this->actionName = isset($parts[2]) && $parts[2] != "" ? $parts[2] : "Index";
     $this->params = array_slice($parts, 3); 
-// var_dump($this->params);
-// var_dump($parts);
 
   }
 

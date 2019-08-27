@@ -128,8 +128,6 @@ async function initRangeData() {
 }
 
 const update = () => {
-  //
-  console.log("updating");
   let url = config.rangeDataURL;
   let from = document.getElementById("from").value;
   if (!from) return;
@@ -145,4 +143,3 @@ location.pathname;
 const config = {
   rangeDataURL: "http://localhost:8080/Dashboard/RangeData"
 };
-let vvv = 100;
