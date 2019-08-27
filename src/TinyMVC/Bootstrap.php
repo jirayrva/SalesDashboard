@@ -27,7 +27,7 @@ class Bootstrap {
     if (!defined("APP_MODEL_DIR")) define("APP_MODEL_DIR", "Model");
     if (!defined("APP_DEFAULT_CONTROLLER")) define("APP_DEFAULT_CONTROLLER", "Home");
     if (!defined("APP_DEFAULT_ACTION")) define("APP_DEFAULT_ACTION", "Index");
-    if (!defined("DEBUG")) define("DEBUG", true);
+    if (!defined("DEBUG")) define("DEBUG", false);
     
     // Framework constants
     define("CLASS_SEPARATOR", "\\");
