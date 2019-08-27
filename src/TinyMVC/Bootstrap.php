@@ -38,19 +38,23 @@ class Bootstrap {
 
   private static function route($request, $response) {
     $controllerClassName = $request->getControllerName();
+    // TODO: refactor to use one catch
     try {
-      $controller = new $controllerClassName($request);
-      $controller->isActionExecutable();
+      $controller = new $controllerClassName($request, $response);
       try {
-        $controller->executeAction();
+        $controller->init();
+        try {
+          $controller->executeAction();
+        } catch (Throwable $e) {
+          $response->send500($request, $e);
+        }
       } catch (Throwable $e) {
-        $response->send500($request, $e);
+        $response->send404($request, $e);
       }
     } catch (Throwable $e) {
       $response->send404($request, $e);
     }
   }
-
 }
 
 ?>

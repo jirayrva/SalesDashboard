@@ -41,9 +41,10 @@ class Response {
     return $this->sent;
   }
 
-  public function send404($request, $details = []) {
+  public function send404($request, $details = [], $customMessage = "") {
     if ($this->isSent()) return;
     $this->setStatusCode(404);
+    $message = $customMessage != "" ? $customMessage : "Page not found";
     // TODO: Use a helper function to generate $data from $request and $details
     // $details = array(
     //   "URI" => $request->getURI(),
@@ -64,10 +65,10 @@ class Response {
       //   http_response_code(404);
       //   echo sprintf("<h1>Page not found</h1><div>Page <i>'%s'</li> is not found.</div>", $request->getURI());
       // }
-    $this->send("Page not found");
+    $this->send($message);
   }
 
-  public function send500($request, $details = []) {
+  public function send500($request, $details = [], $customMessage = "") {
     if ($this->isSent()) return;
     $this->setStatusCode(500);
     // TODO: Use a helper function to generate $data from $request and $details

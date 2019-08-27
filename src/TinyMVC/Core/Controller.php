@@ -13,36 +13,33 @@ abstract class Controller {
 
   abstract protected function Index($params, $res);
 
-  public function __construct($request) {
+  public function __construct($request, $response) {
     $this->request = $request;
-    $this->response = new Response();
-    $this->init();
-}
-
-  protected function init() {
+    $this->response = $response;
+  }
+  
+  public function init($actionName = "") {
     $this->name = (explode(CLASS_SEPARATOR, get_class($this)))[1];
     if ($this->name != $this->request->getControllerShortName()) {
       throw "Controller name does not match the one in Request";
     }
-  }
-
-  public function isActionExecutable() {
-    $actionName = $this->request->getActionName();
-    if (!method_exists($this, $actionName)) throw new Exception();
-    return true;
+    $this->actionName = $actionName != "" ? $actionName : $this->request->getActionName();
+    if (!method_exists($this, $this->actionName)) {
+      throw new Exception();
+    }
   }
 
   public function executeAction() {
-    $actionName = $this->request->getActionName();
     $params = $this->request->getParams();
+    $actionName = $this->actionName;
     $this->preAction();
     $this->$actionName($params, $this->response);
-    if (!$this->response->isSent()) $this->postAction($actionName);
+    if (!$this->response->isSent()) $this->postAction();
   }
   
-  protected function postAction($actionName) {
-    $viewName = "View" . CLASS_SEPARATOR . $this->name . CLASS_SEPARATOR .  $actionName;
-    $this->view = new $viewName($this, $actionName);
+  protected function postAction() {
+    $viewName = "View" . CLASS_SEPARATOR . $this->name . CLASS_SEPARATOR .  $this->actionName;
+    $this->view = new $viewName($this, $this->actionName);
     $this->response->send($this->view->renderOutput());
   }
 
