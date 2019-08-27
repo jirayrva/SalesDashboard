@@ -39,23 +39,29 @@ abstract class Controller {
   }
   
   protected function renderView() {
-    $viewName = VIEW_DIR . CLASS_SEPARATOR . $this->name . CLASS_SEPARATOR .  $this->actionName;
+    $viewName = $this->getViewName();
     $this->view = new $viewName($this, $this->actionName);
     $this->response->send($this->view->renderOutput());
   }
 
+  protected function getViewName() {
+    return APP_VIEW_DIR . CLASS_SEPARATOR . $this->name . CLASS_SEPARATOR .  $this->actionName;
+  }
+  
+  public function getShortName() {
+    return $this->name;
+  }
+
   protected function preAction() {
+    // TODO:
   }
 
   protected function postAction() {
+    // TODO:
   }
 
   protected function redirect() {
     // TODO:
-  }
-
-  public function getShortName() {
-    return $this->name;
   }
 }
 
