@@ -13,7 +13,7 @@ There are two main components in the code
 
 ---
 
-- PSR-4 complient [AutoLoader]() loading applcation and framework from differnt directories.
+- PSR-4 compliant [AutoLoader](./src/TinyMVC/PSR4AutoLoader.php) loading applcation and framework from differnt directories.
 - Each controller has a set of actions. Each action has one view (only one) and any number of models.
 - Controller acts a as middleman between the model(s) and view (V->C->M->C->C)
 - Support and handle HTTP responses: 200. 404, 500
@@ -28,10 +28,10 @@ There are two main components in the code
 - Using Bootstrap
 - Native JS, no JQuery, ...
 
+[![UI screenshot](./docs/ui-thumb.png)](./docs/ui.png)
 [![curl screenshot 1](./docs/range1-thumb.png)](./docs/range1.png)
 [![curl screenshot 2](./docs/range2-thumb.png)](./docs/range2.png)
 [![postman screenshot](./docs/postman-thumb.png)](./docs/postman.p)
-[![UI screenshot](./docs/ui-thumb.png)](./docs/ui.png)
 
 ## Software design and archtecture
 
