@@ -34,16 +34,20 @@ abstract class Controller {
     $actionName = $this->actionName;
     $this->preAction();
     $this->$actionName($params, $this->response);
-    if (!$this->response->isSent()) $this->postAction();
+    $this->postAction();
+    if (!$this->response->isSent()) $this->renderView();
   }
   
-  protected function postAction() {
+  protected function renderView() {
     $viewName = VIEW_DIR . CLASS_SEPARATOR . $this->name . CLASS_SEPARATOR .  $this->actionName;
     $this->view = new $viewName($this, $this->actionName);
     $this->response->send($this->view->renderOutput());
   }
 
   protected function preAction() {
+  }
+
+  protected function postAction() {
   }
 
   protected function redirect() {
